@@ -7,3 +7,14 @@ ul {
     padding:0px;
     margin:0px;
 }
+
+.navbarPosition {
+  display:flex;
+  padding: 10%;
+}
+
+.mainPosition {
+  display: flex;
+  padding:80%;
+}
+

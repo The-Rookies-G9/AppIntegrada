@@ -1,4 +1,7 @@
 import React from 'react';
+import Navbar from 'components/Navbar';
+import Footer from 'components/Footer';
+
 
  //Esta es el layout publico o el landing page, el cual puede acceder todos hasta los clientes
  //esta no se toca es la que va organizar la estructura de fondo de la landing page, 
