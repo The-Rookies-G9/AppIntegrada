@@ -8,6 +8,7 @@ import Login from 'pages/Login';
 import Pdtos from 'pages/Pdtos';
 import RolesUsuarios from 'pages/RolesUs';
 import Vtas from 'pages/Vtas';
+import PublicLayout from 'layouts/PublicLayout';
 
 function App() {
   return (
@@ -30,7 +31,9 @@ function App() {
             <RolesUsuarios />
           </Route>
           <Route path ="/">
-            <Index />
+            <PublicLayout>
+              <Index />
+            </PublicLayout>
           </Route>
         </Switch>
       </Router>
