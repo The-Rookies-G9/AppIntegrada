@@ -2,19 +2,19 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Index from './pages/Indexpage';
 import Admin from './pages/Admin';
-import Pdtos from './pages/Pdtos';
-import RolesUsuarios from './pages/RolesUs';
-
+import Index from 'pages/Indexpage';
+import Login from 'pages/Login';
+import Pdtos from 'pages/Pdtos';
+import RolesUsuarios from 'pages/RolesUs';
+import Vtas from 'pages/Vtas';
 
 function App() {
   return (
     <div>
       <Router>
         <Switch>
-          <Route path ="/login">
+          <Route path ="/Login">
             <Login />
           </Route>
           <Route path ="/Admin">
