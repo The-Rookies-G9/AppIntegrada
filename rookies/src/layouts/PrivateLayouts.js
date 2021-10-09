@@ -9,8 +9,7 @@ import React from 'react';
 const PrivateLayout = ({children}) => {
     return (
         <div>
-            <Navbar />
-            <main >{children}</main>
+            <main>{children}</main>
             <Sidebar />
         </div>
     )

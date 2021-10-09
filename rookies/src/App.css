@@ -8,13 +8,27 @@ ul {
     margin:0px;
 }
 
-.navbarPosition {
-  display:flex;
-  padding: 10%;
+.navbar {
+  min-height: 15vh;
 }
 
-.mainPosition {
+.column.main > footer{
+  min-height: 10vh;
+}
+
+.column {
+  float: right;
   display: flex;
-  padding:80%;
+  flex-direction: column;
+  }
+
+
+.column.sidebar {
+  width: 15%;
+  min-height: 100vh;
 }
 
+.column.main {
+  width: 85%;
+  min-height: 100vh;
+}

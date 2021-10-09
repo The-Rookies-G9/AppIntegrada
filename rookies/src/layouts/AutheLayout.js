@@ -6,11 +6,11 @@ import Sidebar from 'components/Sidebar';
 //Este es el layout de autenticación es decir es login y  registro
 //jesus tu miras si deseas que tenga  sidebar footer header o no, puse sidebar pero tu decides
 
-const AuthLayout = () => {
+const AuthLayout = ({children}) => {
     return (
         <div>
             <Sidebar />
-            <main></main>
+            <main>{children}</main>
             
         </div>
     )
