@@ -67,5 +67,6 @@ body {
   /* */
   .containFormulario {
     display: flexbox;
+    justify-content: center;
   }
   

@@ -1,21 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-    Table,
-    Button,
-    Container,
-   // Modal,
-   // ModalHeader,
-  //ModalBody,
-   // FormGroup,
-    //ModalFooter,
-  } from "reactstrap";
-  import { Link } from 'react-router-dom';
+
 
 const RegistroVtas = () => {
 
     //Definición de estados
-    const [idvta, setIdVta] = useState ( )
+
     const [fecha, setFecha] = useState (" ");
     const [vendedor, setVendedor] = useState (" ");
     const [idVendedor, setIdVendedor] = useState ( " ");
@@ -24,10 +14,12 @@ const RegistroVtas = () => {
     const [idPdto, setIdPdto] = useState ( " ");
     const [unitPdto, setUnitPdto] = useState (" ");
     const [precio, setPrecio] =useState (" ");
+    const [subtotal, setSubtotal] =useState (" ");
+    const [total, setTotal] =useState (" ");
 
    useEffect(() =>{
        console.log ('Hola');
-   } , [idvta, fecha, vendedor, idVendedor, cliente, idCliente, idPdto, unitPdto, precio])
+   } , [fecha, vendedor, idVendedor, cliente, idCliente, idPdto, unitPdto, precio, subtotal, total])
 
    //Funciones para ingreso de informacion
    const cambioFecha = (e) => {
@@ -62,11 +54,17 @@ const RegistroVtas = () => {
         setPrecio ("Precio por Producto", e.target.value);
     }
 
-    
+    const cambioSubtotal = (e) => {
+        setPrecio ("Subtotal por Producto", e.target.value);
+    }
+
+    const cambioTotal = (e) => {
+        setPrecio ("Total Venta", e.target.value);
+    }
     
     //Funciones para envio de información al Backend
     const Enviar = () => {
-        console.log('El valor de la variable nombreVariable es ', nombreVariable);
+        console.log('El valor de la variable cliente es ', cliente);
     }
 
 
@@ -78,8 +76,9 @@ const RegistroVtas = () => {
                     <ul>
                         <li className = "containFormulario">
                             <h1>Formulario Registro Ventas</h1>
-                            <input type = "text" className ="form-control" readOnly onChange = {cambioIdvta}/>
+                            <input type = "text" className ="form-control" readOnly/>
                             <label for = "Fecha">
+                                Fecha
                             <input onChange = {cambioFecha} type = "datetime" name = "Fecha"  required/>
                             </label>
                             <input onChange = {cambioVendedor} type = "text" placeholder = "Vendedor"/>
