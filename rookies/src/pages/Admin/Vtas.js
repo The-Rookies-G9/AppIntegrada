@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import CrudVtas from 'components/Crudvtas';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -14,6 +14,36 @@ import {
   import { Link } from 'react-router-dom';
 
 const Vtas = () => {
+
+    //Definición de estados
+    const [fecha, setFecha] = useState (" ");
+    const [vendedor, setVendedor] = useState (" ");
+    const [idVendedor, setIdvendedor] =useState (" ");
+
+   useEffect(() =>{
+       console.log ('Hola');
+   } , [])
+
+   //Funciones para ingreso de informacion
+   const cambioFecha = (e) => {
+       setFecha("fecha: ", e.target.value);
+   }
+
+   const cambioVendedor = (e) => {
+    setVendedor("Vendedor: ", e.target.value);
+    }
+
+    const cambioIdVendedor = (e) => {
+        setFecha("fecha: ", e.target.value);
+    }
+    
+    //Funciones para envio de información al Backend
+    const Enviar = () => {
+
+    }
+
+
+
     return (
         <div>
             <main>
@@ -23,13 +53,20 @@ const Vtas = () => {
                 </section>
                 <form>
                     <ul>
-                        <li>
-                            <input type = "text"className="form-control" readOnly />
-                            <input type = "text" placeholder = "Código del Producto"/>
-                            <input type = "number" placeholder ="Unidades de Producto"/>
-                            <input placeholder = "Precio unitario del Producto"/>
-                            <input type = "text" placeholder = "Nombre Cliente"/>
-                            <input type = "texte" placeholder = "ID Cliente"/>
+                        <li className = "containFormulario">
+                            <h1>Formulario Registro Ventas</h1>
+                            <input type = "text" className ="form-control" readOnly />
+                            <input onChange = {cambioFecha} type = "datetime"placeholder = "Fecha" required/>
+                            <input onChange = {cambioVendedor} type = "text" placeholder = "Vendedor"/>
+                            <input onChange = {cambioIdVendedor} type = "text" placeholder = "ID Vendedor" required/>
+                            <input onChange = {cambioCliente} type = "text" placeholder = "Nombre Cliente" required/>
+                            <input onChange = {cambioIdCliente} type = "texte" placeholder = "ID Cliente" required/>
+                            <input onChange = {cambioIdPdto} type = "text" placeholder = "Código del Producto" required/>
+                            <input onChange = {} type = "number" placeholder ="Unidades de Producto"required/>
+                            <input onChange = {} placeholder = "Precio por Producto"required/>
+                            <input onChange = {} placeholder = "Subtotal por Producto" required />
+                            <input onChange = {} placeholder ="Total Venta"required/>
+                            <button type = "button" onClick = {Enviar} className = "topButton"> Enviar</button>
 
                         </li>
                     </ul>

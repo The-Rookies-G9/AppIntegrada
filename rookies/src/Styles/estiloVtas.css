@@ -1,0 +1,71 @@
+body {
+    margin:0px;
+  }
+  
+  ul {
+      list-style: none;
+      padding:0px;
+      margin:0px;
+  }
+  
+  /* Tamaño de navbar */
+  .navbar {
+    min-height: 15vh;
+    background-color: blue;
+  }
+  
+  /*Menu de navegación */
+  .topnav {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  /*Estilo para los botones */
+  .topButton{
+    background-color:rgba(255, 0, 106, 0.822);
+    color:white;
+    cursor:pointer;
+    padding: 1px;
+    border-color:fuchsia;
+    border-radius: 10px;
+    margin-left: 8px;
+  }
+  
+  /*Efecto del boton */
+  .topButton:hover{
+    cursor:pointer;
+    box-shadow: 2px 1px;
+    transform:scale(1.1);
+  }
+  
+  /*Posicion y tamaño del footer */
+  .column.main > footer{
+    min-height: 10vh;
+  }
+  
+  
+  .column {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    }
+  
+  /*Tamaño del sidebar*/
+  .column.sidebar {
+    width: 15%;
+    min-height: 100vh;
+  }
+  
+  /*Tamaño del main */
+  .column.main {
+    width: 85%;
+    min-height: 100vh;
+  }
+  
+  /* */
+  .containFormulario {
+    display: flexbox;
+  }
+  
