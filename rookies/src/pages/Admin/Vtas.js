@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import CrudVtas from 'components/Crudvtas';
+import RegistroVtas from 'components/RegistroVtas';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
     Table,
@@ -15,33 +16,28 @@ import {
 
 const Vtas = () => {
 
-    //Definición de estados
-    const [fecha, setFecha] = useState (" ");
-    const [vendedor, setVendedor] = useState (" ");
-    const [idVendedor, setIdvendedor] =useState (" ");
-
-   useEffect(() =>{
+//Definición de estados, si deseamos que inicialice evacio se deja (" ") y si deseamos que inicialice con un dato se ubica dentro del parentesis
+    //const [nombreVariable, setNombreVariable] = useState (" ");
+   
+    const[mostrarFormularioRegistro, setMostrarFormularioRegistro] = useState (false);
+   
+   
+//Este useEffect se ejecuta una sola vez cuando la página se renderiza
+   /*  useEffect(() =>{
        console.log ('Hola');
-   } , [])
+   } , []) */
+   
 
-   //Funciones para ingreso de informacion
-   const cambioFecha = (e) => {
-       setFecha("fecha: ", e.target.value);
-   }
+//Funciones para ingreso de informacion
+   /*const nombreFuncion = (e) => {
+       setNombreVariable("texto ImprimeJunto al Ingresado ", e.target.value);
+   } */
 
-   const cambioVendedor = (e) => {
-    setVendedor("Vendedor: ", e.target.value);
-    }
-
-    const cambioIdVendedor = (e) => {
-        setFecha("fecha: ", e.target.value);
-    }
-    
-    //Funciones para envio de información al Backend
-    const Enviar = () => {
-
-    }
-
+    const
+//Funciones para envio de información al Backend
+   /* const Enviar = () => {
+        console.log('El valor de la variable nombreVariable es ', nombreVariable);
+    } */
 
 
     return (
@@ -49,30 +45,9 @@ const Vtas = () => {
             <main>
                 <section className ="topnav ">
                     <h1>Ventas</h1>
-                    <Link><button className = "topButton" >Registrar</button> </Link>   
+                    <button onClick = {() => setMostrarFormularioRegistro (!mostrarFormularioRegistro)} className = "topButton" >Registrar</button> 
+                    {mostrarFormularioRegistro && <RegistroVtas />}  
                 </section>
-                <form>
-                    <ul>
-                        <li className = "containFormulario">
-                            <h1>Formulario Registro Ventas</h1>
-                            <input type = "text" className ="form-control" readOnly />
-                            <input onChange = {cambioFecha} type = "datetime"placeholder = "Fecha" required/>
-                            <input onChange = {cambioVendedor} type = "text" placeholder = "Vendedor"/>
-                            <input onChange = {cambioIdVendedor} type = "text" placeholder = "ID Vendedor" required/>
-                            <input onChange = {cambioCliente} type = "text" placeholder = "Nombre Cliente" required/>
-                            <input onChange = {cambioIdCliente} type = "texte" placeholder = "ID Cliente" required/>
-                            <input onChange = {cambioIdPdto} type = "text" placeholder = "Código del Producto" required/>
-                            <input onChange = {} type = "number" placeholder ="Unidades de Producto"required/>
-                            <input onChange = {} placeholder = "Precio por Producto"required/>
-                            <input onChange = {} placeholder = "Subtotal por Producto" required />
-                            <input onChange = {} placeholder ="Total Venta"required/>
-                            <button type = "button" onClick = {Enviar} className = "topButton"> Enviar</button>
-
-                        </li>
-                    </ul>
-
-                </form>
-                
 
                     <section  className="mb-3" >
                         <form>
