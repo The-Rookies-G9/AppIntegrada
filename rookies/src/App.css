@@ -2,9 +2,25 @@ body {
   margin:0px;
 }
 
+.navbar {
+
+  justify-content: space-between;
+  padding:30px;
+  margin:0px;
+  background-color: #2a3f85;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+
 ul {
     list-style: none;
-    padding:0px;
+    padding:30px;
     margin:0px;
 }
 
@@ -18,3 +34,6 @@ ul {
   padding:80%;
 }
 
+li {
+  float: left;
+}
