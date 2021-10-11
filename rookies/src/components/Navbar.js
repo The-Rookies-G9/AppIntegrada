@@ -26,12 +26,12 @@ const firebaseConfig = {
 const Navbar = () => {
     return (
         <div>
-            <ul class="navbar">
+            <ul class="navbar fixed-top">
                 <li>
                     <a class="navbar-brand" href="#">
                         <img
                             src= {Logo}
-                            height="70"
+                            height="50"
                             alt=""
 
                         />

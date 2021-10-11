@@ -2,7 +2,10 @@ import React from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css'; import
 'bootstrap-css-only/css/bootstrap.min.css'; import
 'mdbreact/dist/css/mdb.css';
-
+import CRR1 from "./media/CRR1.jpg"
+import CRR2 from "./media/CRR2.jpg"
+import CRR3 from "./media/CRR3.jpg"
+import CRR4 from "./media/CRR4.jpg"
 
 import {
     MDBCarousel,
@@ -17,31 +20,24 @@ import {
 
 const Index = () => {
     return (
-        <MDBCarousel showIndicators showControls fade>
+        <MDBCarousel showIndicators showControls fade position="absolute">
         <MDBCarouselInner>
           <MDBCarouselItem itemId={0}>
-            <MDBCarouselElement src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg' alt='...' />
-            <MDBCarouselCaption>
-              <h5>First slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </MDBCarouselCaption>
+            <MDBCarouselElement src={CRR1} alt='...' />
           </MDBCarouselItem>
   
           <MDBCarouselItem itemId={1}>
-            <MDBCarouselElement src='https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg' alt='...' />
-            <MDBCarouselCaption>
-              <h5>Second slide label</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </MDBCarouselCaption>
+            <MDBCarouselElement src={CRR2} alt='...' />
           </MDBCarouselItem>
   
           <MDBCarouselItem itemId={2}>
-            <MDBCarouselElement src='https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg' alt='...' />
-            <MDBCarouselCaption>
-              <h5>Third slide label</h5>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </MDBCarouselCaption>
+            <MDBCarouselElement src={CRR3} alt='...' />
           </MDBCarouselItem>
+
+          <MDBCarouselItem itemId={3}>
+            <MDBCarouselElement src={CRR4} alt='...' />
+          </MDBCarouselItem>
+
         </MDBCarouselInner>
       </MDBCarousel>
     );

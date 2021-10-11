@@ -5,9 +5,9 @@ import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 const Footer = () => {
   return (
     
-    <MDBFooter color="unique-color-dark fixed-bottom" >
+    <MDBFooter color="unique-color-dark" >
       <div style={{ backgroundColor: "#2a3f85" }}>
-        <MDBContainer fluid className="text-center text-md-left">
+        <MDBContainer>
           <MDBRow className="py-2 d-flex align-items-center">
             <MDBCol>
 

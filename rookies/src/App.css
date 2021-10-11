@@ -10,12 +10,12 @@ body {
 .navbar {
 
   justify-content: space-between;
-  padding:30px;
+  padding:150px;
   margin:0px;
   background-color: #2a3f85;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+
 }
 
 .active {
