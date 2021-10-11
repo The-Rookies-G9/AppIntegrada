@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import './Styles/estiloVtas.css';
 import 'bootstrap/dist/css/bootstrap.css';

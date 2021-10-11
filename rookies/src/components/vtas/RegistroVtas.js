@@ -55,11 +55,11 @@ const RegistroVtas = () => {
     }
 
     const cambioSubtotal = (e) => {
-        setPrecio ("Subtotal por Producto", e.target.value);
+        setSubtotal ("Subtotal por Producto", e.target.value);
     }
 
     const cambioTotal = (e) => {
-        setPrecio ("Total Venta", e.target.value);
+        setTotal ("Total Venta", e.target.value);
     }
     
     //Funciones para envio de información al Backend
