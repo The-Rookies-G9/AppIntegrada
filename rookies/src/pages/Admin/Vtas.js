@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import CrudVtas from 'components/vtas/Crudvtas';
 import RegistroVtas from 'components/vtas/RegistroVtas';
+import ListadoVtas from 'components/vtas/ListadoVtas';
 import {General, Especifica} from 'components/vtas/Busqueda';
 import "bootstrap/dist/css/bootstrap.min.css";
   //import { Link } from 'react-router-dom';
@@ -11,10 +12,11 @@ const Vtas = () => {
 //Definición de estados, si deseamos que inicialice evacio se deja (" ") y si deseamos que inicialice con un dato se ubica dentro del parentesis
    
     const[mostrarFormularioRegistro, setMostrarFormularioRegistro] = useState (false);
-    const[mostrarVtas, setMostarVtas] =useState (false);
+    const[mostrarVtas, setMostrarVtas] =useState (false);
     const[busquedaGeneral, setBusquedaGeneral] =useState (false);
     const[busquedaEspecifica, setBusquedaEspecifica] = useState (false);
     const [textoBoton, setTextoBoton] = useState('cerrar');
+    const [textoBotonListar, setTextoBotonListar] = useState('cerrar');
    
     useEffect(() => {
         if (mostrarFormularioRegistro) {
@@ -26,9 +28,9 @@ const Vtas = () => {
 
       useEffect(() => {
         if (mostrarVtas) {
-          setTextoBoton('Cerrar');
+          setTextoBotonListar('Cerrar');
         } else {
-          setTextoBoton('Listado de Ventas');
+          setTextoBotonListar('Listado de Ventas');
         }
       }, [mostrarVtas]);
 
@@ -38,6 +40,8 @@ const Vtas = () => {
                 <section >
                     <button onClick = {() => setMostrarFormularioRegistro (!mostrarFormularioRegistro)} className = "topButton" >{textoBoton}</button> 
                     {mostrarFormularioRegistro && <RegistroVtas />}  
+                    <button onClick = {() => setMostrarVtas (!mostrarVtas)} className = "topButton" >{textoBotonListar}</button> 
+                    {mostrarVtas && <ListadoVtas />}  
                 </section>
                 <section  className="mb-3 seccionBusqueda" >
                     <form>
