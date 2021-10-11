@@ -28,8 +28,8 @@ body {
     color:white;
     cursor:pointer;
     padding: 1px;
-    border-color:fuchsia;
-    border-radius: 10px;
+    border-color:hsla(320, 100%, 50%, 0.692);
+    border-radius: 200px;
     margin-left: 8px;
   }
   
@@ -40,6 +40,22 @@ body {
     transform:scale(1.1);
   }
   
+  .navbarButton{
+    background-color:rgba(255, 0, 106, 0.822);
+    color:white;
+    cursor:pointer;
+    border-color:hsla(320, 100%, 50%, 0.692);
+    border-radius: 10px;
+    margin-left: 5px;
+  }
+  
+  
+  .navbarButton:hover{
+    cursor:pointer;
+    box-shadow: 2px 1px;
+    transform:scale(1.1);
+  }
+
   /*Posicion y tamaño del footer */
   .column.main > footer{
     min-height: 10vh;
@@ -66,7 +82,68 @@ body {
   
   /* */
   .containFormulario {
-    display: flexbox;
-    justify-content: center;
+    margin-left: 90px;
+    margin-right: 90px;
+
   }
+
+  .seccionBusqueda {
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 10px;
+  }
+
+  .busquedaGeneral {
+    display:flex; 
+    justify-content: center;
+    padding: 8px;
+    border: 5px ;
+    border-color: fuchsia;
+  }
+
+  .casilla{
+    border-radius: 8px;
+    padding: 3px;
+    border: 0px solid rgb(211, 207, 207);
+  }
+
   
+.casilla:focus-within{
+  outline: none;
+  border: 1px solid rgb(226, 10, 118);
+}
+
+.positionLabel{
+  margin: 10px;
+}
+
+
+.tamañoFuente{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight:100;
+}
+
+
+
+.logo {
+  height:100px;
+  border-radius: 50px;
+}
+
+.bloqueAside{
+  background-color: rgb(3, 3, 56);
+  float:right;
+  margin: 0px 50px 0px 0px;
+  min-height: 100vh;
+}
+
+.tituloFormulario {
+  display: flex;
+  justify-content: center;
+  color:rgb(3, 3, 56); 
+}
+
+.casillasRegistro {
+  display: flex;
+  justify-content: center;
+}

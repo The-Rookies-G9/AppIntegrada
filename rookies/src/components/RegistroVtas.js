@@ -73,28 +73,48 @@ const RegistroVtas = () => {
         <div>
             <main>
                 <form>
-                    <ul>
-                        <li className = "containFormulario">
-                            <h1>Formulario Registro Ventas</h1>
-                            <input type = "text" className ="form-control" readOnly/>
-                            <label for = "Fecha">
-                                Fecha
-                            <input onChange = {cambioFecha} type = "datetime" name = "Fecha"  required/>
-                            </label>
-                            <input onChange = {cambioVendedor} type = "text" placeholder = "Vendedor"/>
-                            <input onChange = {cambioIdVendedor} type = "text" placeholder = "ID Vendedor" required/>
-                            <input onChange = {cambioCliente} type = "text" placeholder = "Nombre Cliente" required/>
-                            <input onChange = {cambioIdCliente} type = "text" placeholder = "ID Cliente" required/>
-                            <input onChange = {cambioIdPdto} type = "text" placeholder = "Código del Producto" required/>
-                            <input onChange = {cambioUnitPdto} type = "number" placeholder ="Unidades de Producto"required/>
-                            <input onChange = {cambioPrecio} placeholder = "Precio por Producto"required/>
-                            <input onChange = {cambioSubtotal} placeholder = "Subtotal por Producto" required />
-                            <input onChange = {cambioTotal} placeholder ="Total Venta"required/>
-                            <button type = "button" onClick = {Enviar} className = "topButton"> Enviar</button>
-
-                        </li>
+                    <ul className ="containFormulario">
+                        <h1 className = "tituloFormulario">Formulario Registro Ventas</h1>
+                            <li>
+                                <input type = "text" className ="form-control" readOnly />
+                                <label for = "Fecha">
+                                    Fecha
+                                    <input onChange = {cambioFecha} type = "datetime" name = "Fecha" className = "form-control" required/>
+                                </label>
+                            </li>
+                            <li className = "row">
+                                <div className = "col">
+                                <input onChange = {cambioVendedor}  className = "form-control" type = "text" placeholder = "Vendedor"/>
+                                </div>
+                                <div className = "col">
+                                <input onChange = {cambioIdVendedor} className = "form-control" type = "text" placeholder = "ID Vendedor" required/>
+                                </div>
+                            </li>
+                            <li className = "row">
+                                <div className = "col">
+                                <input onChange = {cambioCliente} className = "form-control" type = "text" placeholder = "Nombre Cliente" required/>
+                                </div>
+                                <div className = "col">
+                                <input onChange = {cambioIdCliente} className = "form-control"type = "text" placeholder = "ID Cliente" required/>
+                                </div>
+                            </li>
+                            <li className = "row">
+                                <div className = "col">
+                                <input onChange = {cambioIdPdto} type = "text" placeholder = "Código del Producto" className = "form-control" required/>
+                                </div>
+                                <div className = "col">
+                                <input onChange = {cambioUnitPdto} type = "number" placeholder ="Unidades de Producto"className = "form-control" required/>
+                                </div>
+                                <div className = "col">
+                                <input onChange = {cambioPrecio} placeholder = "Precio por Producto" className = "form-control" required/>
+                                </div>
+                                <div className = "col">
+                                <input onChange = {cambioSubtotal} placeholder = "Subtotal por Producto" className = "form-control" required />
+                                </div>
+                            </li>
+                                <li > <input onChange = {cambioTotal} placeholder = "Total Venta" className = "form-control" required className="form-control" /></li>
+                            <button type = "button" onClick = {Enviar} className = "topButton"> Guardar</button>
                     </ul>
-
                 </form>
             </main>
         </div>
