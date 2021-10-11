@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import CrudVtas from 'components/vtas/Crudvtas';
 import RegistroVtas from 'components/vtas/RegistroVtas';
-import ListadoVtas from 'components/vtas/ListadoVtas';
 import {General, Especifica} from 'components/vtas/Busqueda';
 import "bootstrap/dist/css/bootstrap.min.css";
   //import { Link } from 'react-router-dom';
 
+//Variable que simula ser backend
+const DataBackend = []
 
 const Vtas = () => {
 
@@ -17,6 +18,7 @@ const Vtas = () => {
     const[busquedaEspecifica, setBusquedaEspecifica] = useState (false);
     const [textoBoton, setTextoBoton] = useState('cerrar');
     const [textoBotonListar, setTextoBotonListar] = useState('cerrar');
+    const [data, setdata] = useState ([]);
    
     useEffect(() => {
         if (mostrarFormularioRegistro) {
@@ -26,13 +28,27 @@ const Vtas = () => {
         }
       }, [mostrarFormularioRegistro]);
 
-      useEffect(() => {
-        if (mostrarVtas) {
-          setTextoBotonListar('Cerrar');
-        } else {
-          setTextoBotonListar('Listado de Ventas');
-        }
-      }, [mostrarVtas]);
+    useEffect(() => {
+    if (mostrarVtas) {
+        setTextoBotonListar('Cerrar');
+    } else {
+        setTextoBotonListar('Listar Ventas');
+    }
+    }, [mostrarVtas]);
+
+    //Obtener lista de data desde Backend
+    useEffect(() => {}, []);
+
+    useEffect (() => {
+        setdata(DataBackend);
+    }, [] );
+
+    //
+    useEffect(() => {
+        console.log ("Listado total de ventas de la empresa", listaVta)
+    }, [listaVta]);
+
+
 
     return (
         <div>
@@ -41,7 +57,7 @@ const Vtas = () => {
                     <button onClick = {() => setMostrarFormularioRegistro (!mostrarFormularioRegistro)} className = "topButton" >{textoBoton}</button> 
                     {mostrarFormularioRegistro && <RegistroVtas />}  
                     <button onClick = {() => setMostrarVtas (!mostrarVtas)} className = "topButton" >{textoBotonListar}</button> 
-                    {mostrarVtas && <ListadoVtas />}  
+                    {mostrarVtas && <TablaVtas listaVta = {data} />}  
                 </section>
                 <section  className="mb-3 seccionBusqueda" >
                     <form>
@@ -61,6 +77,55 @@ const Vtas = () => {
 
           <CrudVtas />
         </main>
+        </div>
+    )
+}
+
+const TablaVtas = ({listaVta}) => {
+    
+   
+    return (
+        <div>
+            <tabla>
+                <h1>Lista Total de Ventas+</h1>
+                <thead>
+                    <th>Id Venta</th> 
+                    <th>Fecha</th>
+                    <th>Vendedor</th>
+                    <th>Id Vendedor</th>
+                    <th>Cliente</th>
+                    <th>Id Cliente</th>
+                    <th>Estado</th>
+                    <th>Producto</th>
+                    <th>Id Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio unitario</th>
+                    <th>Valor Total Venta</th> 
+                </thead>
+                <tbody>
+                {listaVta.map ((dato) => {
+                    return(
+                        <div>
+                            <tr key={dato.IdVta}>
+                                <td>{dato.IdVta}</td>{"  "}
+                                <td>{dato.Fecha}</td>{"  "}
+                                <td>{dato.Total}</td>{"  "}
+                                <td>{dato.IdPcto}</td>{"  "}
+                                <td>{dato.Cantidad}</td>{"  "}
+                                <td>{dato.Vunit}</td>{"  "}
+                                <td>{dato.Cliente}</td>{"  "}
+                                <td>{dato.IdCliente}</td>{"  "}
+                                <td>{dato.vendedor}</td>{"  "}
+                                <td>{dato.IdVendedor}</td>{"  "}
+                                <td>{dato.Estado}</td>{"  "}
+                            </tr>
+                        </div>
+                    );
+                    })
+                    }
+          
+                </tbody>
+            </tabla>
         </div>
     )
 }
