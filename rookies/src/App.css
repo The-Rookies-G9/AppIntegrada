@@ -1,3 +1,8 @@
+
+
+
+
+
 body {
   margin:0px;
 }
@@ -20,13 +25,13 @@ body {
 
 ul {
     list-style: none;
-    padding:30px;
+    padding:10px;
     margin:0px;
 }
 
 .navbarPosition {
   display:flex;
-  padding: 10%;
+  padding: 3%;
 }
 
 .mainPosition {
