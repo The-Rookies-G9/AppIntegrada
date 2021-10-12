@@ -1,21 +1,35 @@
+
 import React, {useEffect, useState} from 'react';
-import CrudVtas from 'components/vtas/Crudvtas';
 import RegistroVtas from 'components/vtas/RegistroVtas';
+import TablaVtas from 'components/vtas/TablaVtas';
 import {General} from 'components/vtas/Busqueda';
 import { Especifica } from 'components/vtas/Busqueda';
 import "bootstrap/dist/css/bootstrap.min.css";
   //import { Link } from 'react-router-dom';
 
 //Variable que simula ser backend
-const DataBackend = [ 
-    {IdVta: 123, Fecha:3-10-21, Total: 9000, IdPcto: 32-11, Cantidad: 3, Vunit: 3000, Cliente: "Ramiro Meneses", IdCliente: 3216549, vendedor: "Carlos Castro", Estado:"En proceso" },
-    {IdVta: 231, Fecha:3-9-21, Total: 4000, IdPcto: 32-12, Cantidad: 2, Vunit: 2000, Cliente: "Camilo Parra", IdCliente: 98457632, vendedor: "Carlos Castro", Estado:"Entregada" },
-    {IdVta: 456, Fecha:23-10-21, Total: 15000, IdPcto: 33-11, Cantidad: 3, Vunit: 5000, Cliente: "Carla Giraldo", IdCliente: 1124587, vendedor: "Benito Perez", Estado: "Cancelada" },
+const DataBackend =[
+  {
+    idVta: "v456",
+    fecha: 4/2/21 ,
+    vendedor: "Camilo Parra" , 
+    idVendedor: "3276545",
+    cliente: "Mirian medina" ,
+    idCliente: "cv002" ,
+    estado: "Activo",
+    idPcto: "cf342" , 
+    cantidad: 4 ,
+    vUnit: 3000,
+    subTotal: 12000,
+    total : 4000,
+  }
 ]
+
+    
 
 const Vtas = () => {
 
-//Definición de estados, si deseamos que inicialice evacio se deja (" ") y si deseamos que inicialice con un dato se ubica dentro del parentesis
+//Definición de estados, si deseamos que inicialice evacio se deja (" ") y si deseamos que inicialice con un vtas se ubica dentro del parentesis
    
     const[mostrarFormularioRegistro, setMostrarFormularioRegistro] = useState (false);
     const[mostrarVtas, setMostrarVtas] =useState (false);
@@ -47,10 +61,7 @@ const Vtas = () => {
     useEffect (() => {
         setdata(DataBackend);
     }, [] );
-
-   
-
-
+    
 
     return (
         <div>
@@ -69,70 +80,18 @@ const Vtas = () => {
                             </li>
                             {busquedaGeneral && <General />}
                             <li class="nav-item">
-                                <a onClick = {()=> setBusquedaEspecifica(!busquedaEspecifica)} class="nav-link" href="#">Especifico</a>
+                                <a onClick = {()=> setBusquedaEspecifica(!busquedaEspecifica)} class="nav-link active" href="#">Especifico</a>
                             </li>
                             {busquedaEspecifica && <Especifica/>}
                         </ul>
                     </form>
                 </section>
 
-          <CrudVtas />
+    
         </main>
         </div>
     );
 }
 
-const TablaVtas = ({listadoVtas}) => {
-    
-     //
-     useEffect(() => {
-        console.log ("Listado total de ventas de la empresa", listadoVtas)
-    }, [listadoVtas]);
-   
-    return (
-        <div>
-            <tabla>
-                <h1>Lista Total de Ventas+</h1>
-                <thead>
-                    <th>Id Venta</th> 
-                    <th>Fecha</th>
-                    <th>Vendedor</th>
-                    <th>Id Vendedor</th>
-                    <th>Cliente</th>
-                    <th>Id Cliente</th>
-                    <th>Estado</th>
-                    <th>Producto</th>
-                    <th>Id Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio unitario</th>
-                    <th>Valor Total Venta</th> 
-                </thead>
-                <tbody>
-                {listadoVtas.map ((dato) => {
-                    return(
-                        <div>
-                            <tr key={dato.IdVta}>
-                                <td>{dato.IdVta}</td>{"  "}
-                                <td>{dato.Fecha}</td>{"  "}
-                                <td>{dato.Total}</td>{"  "}
-                                <td>{dato.IdPcto}</td>{"  "}
-                                <td>{dato.Cantidad}</td>{"  "}
-                                <td>{dato.Vunit}</td>{"  "}
-                                <td>{dato.Cliente}</td>{"  "}
-                                <td>{dato.IdCliente}</td>{"  "}
-                                <td>{dato.vendedor}</td>{"  "}
-                                <td>{dato.IdVendedor}</td>{"  "}
-                                <td>{dato.Estado}</td>{"  "}
-                            </tr>
-                        </div>
-                    );
-                    })
-                    }
-          
-                </tbody>
-            </tabla>
-        </div>
-    )
-}
 
 export default Vtas;
