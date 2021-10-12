@@ -70,15 +70,8 @@ const Vtas = () => {
                             {busquedaGeneral && <General />}
                             <li class="nav-item">
                                 <a onClick = {()=> setBusquedaEspecifica(!busquedaEspecifica)} class="nav-link" href="#">Especifico</a>
-                                identificador de la venta, documento de identidad del cliente o nombre del cliente
                             </li>
-                            {busquedaEspecifica && (
-                                <div>
-                                <form>
-                                identificador de la venta, documento de identidad del cliente o nombre del cliente en la información de las ventas registradas en el sistema.
-                                </form>
-                            </div>
-                            )}
+                            {busquedaEspecifica && <Especifica/>}
                         </ul>
                     </form>
                 </section>

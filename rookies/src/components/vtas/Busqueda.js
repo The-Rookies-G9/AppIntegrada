@@ -76,19 +76,13 @@ const Especifica = () => {
                 Cliente:
                 <input name="cliente" className=" casilla positionLabel"  placeholder="Ej: Daniel Pulido"/>
             </label>
-            <label for="tipoId">
-                Tipo ID:
-                <select name="tipoId" className=" casilla positionLabel" >
-                    <option value="0">Seleccione</option>
-                    <option value="CC">Cédula de ciudadania</option>
-                    <option value="CE">Cédula de Extranjeria</option>
-                    <option value="TI">Tarjeta de Identidad</option>
-                    <option value="PA">Pasaporte</option>
-                </select>
-            </label>
             <label for="numeroDoc">
                 No. ID:
-                <input name="numeroDoc" type="number" step="7" className=" casilla positionLabel" placeholder="Ej: 9786566" />
+                <input name="numeroDoc" type="text" className=" casilla positionLabel" placeholder="Id. Cliente" />
+            </label>
+            <label for="idvta" >
+               N. Venta
+                <input name="idvta"  placeholder="Id de venta" className=" casilla positionLabel"/>
             </label>
         </li>
     </ul>
