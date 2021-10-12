@@ -1,12 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import CrudVtas from 'components/vtas/Crudvtas';
 import RegistroVtas from 'components/vtas/RegistroVtas';
-import {General, Especifica} from 'components/vtas/Busqueda';
+import {General} from 'components/vtas/Busqueda';
+import { Especifica } from 'components/vtas/Busqueda';
 import "bootstrap/dist/css/bootstrap.min.css";
   //import { Link } from 'react-router-dom';
 
 //Variable que simula ser backend
-const DataBackend = []
+const DataBackend = [ 
+    {IdVta: 123, Fecha:3-10-21, Total: 9000, IdPcto: 32-11, Cantidad: 3, Vunit: 3000, Cliente: "Ramiro Meneses", IdCliente: 3216549, vendedor: "Carlos Castro", Estado:"En proceso" },
+    {IdVta: 231, Fecha:3-9-21, Total: 4000, IdPcto: 32-12, Cantidad: 2, Vunit: 2000, Cliente: "Camilo Parra", IdCliente: 98457632, vendedor: "Carlos Castro", Estado:"Entregada" },
+    {IdVta: 456, Fecha:23-10-21, Total: 15000, IdPcto: 33-11, Cantidad: 3, Vunit: 5000, Cliente: "Carla Giraldo", IdCliente: 1124587, vendedor: "Benito Perez", Estado: "Cancelada" },
+]
 
 const Vtas = () => {
 
@@ -43,10 +48,7 @@ const Vtas = () => {
         setdata(DataBackend);
     }, [] );
 
-    //
-    useEffect(() => {
-        console.log ("Listado total de ventas de la empresa", listaVta)
-    }, [listaVta]);
+   
 
 
 
@@ -57,7 +59,7 @@ const Vtas = () => {
                     <button onClick = {() => setMostrarFormularioRegistro (!mostrarFormularioRegistro)} className = "topButton" >{textoBoton}</button> 
                     {mostrarFormularioRegistro && <RegistroVtas />}  
                     <button onClick = {() => setMostrarVtas (!mostrarVtas)} className = "topButton" >{textoBotonListar}</button> 
-                    {mostrarVtas && <TablaVtas listaVta = {data} />}  
+                    {mostrarVtas && <TablaVtas listadoVtas = {data}/>}  
                 </section>
                 <section  className="mb-3 seccionBusqueda" >
                     <form>
@@ -70,7 +72,13 @@ const Vtas = () => {
                                 <a onClick = {()=> setBusquedaEspecifica(!busquedaEspecifica)} class="nav-link" href="#">Especifico</a>
                                 identificador de la venta, documento de identidad del cliente o nombre del cliente
                             </li>
-                            {busquedaEspecifica && <Especifica />}
+                            {busquedaEspecifica && (
+                                <div>
+                                <form>
+                                identificador de la venta, documento de identidad del cliente o nombre del cliente en la información de las ventas registradas en el sistema.
+                                </form>
+                            </div>
+                            )}
                         </ul>
                     </form>
                 </section>
@@ -78,11 +86,15 @@ const Vtas = () => {
           <CrudVtas />
         </main>
         </div>
-    )
+    );
 }
 
-const TablaVtas = ({listaVta}) => {
+const TablaVtas = ({listadoVtas}) => {
     
+     //
+     useEffect(() => {
+        console.log ("Listado total de ventas de la empresa", listadoVtas)
+    }, [listadoVtas]);
    
     return (
         <div>
@@ -103,7 +115,7 @@ const TablaVtas = ({listaVta}) => {
                     <th>Valor Total Venta</th> 
                 </thead>
                 <tbody>
-                {listaVta.map ((dato) => {
+                {listadoVtas.map ((dato) => {
                     return(
                         <div>
                             <tr key={dato.IdVta}>

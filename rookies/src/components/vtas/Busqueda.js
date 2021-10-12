@@ -1,9 +1,9 @@
-
+import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const General = () => {
-
-    <container className = "busquedaGeneral">
+    return (
+        <container className = "busquedaGeneral">
     <ul >
         <li>
             <label for="idvta" >
@@ -64,23 +64,36 @@ const General = () => {
         </li>
     </ul>
     </container>
-    
+    );  
 }
-
 
 const Especifica = () => {
-    
     return (
-
         <div>
-            <form>
-            identificador de la venta, documento de identidad del cliente o nombre del cliente en la información de las ventas registradas en el sistema.
-            </form>
+           <ul>
+        <li>
+            <label for="cliente">
+                Cliente:
+                <input name="cliente" className=" casilla positionLabel"  placeholder="Ej: Daniel Pulido"/>
+            </label>
+            <label for="tipoId">
+                Tipo ID:
+                <select name="tipoId" className=" casilla positionLabel" >
+                    <option value="0">Seleccione</option>
+                    <option value="CC">Cédula de ciudadania</option>
+                    <option value="CE">Cédula de Extranjeria</option>
+                    <option value="TI">Tarjeta de Identidad</option>
+                    <option value="PA">Pasaporte</option>
+                </select>
+            </label>
+            <label for="numeroDoc">
+                No. ID:
+                <input name="numeroDoc" type="number" step="7" className=" casilla positionLabel" placeholder="Ej: 9786566" />
+            </label>
+        </li>
+    </ul>
         </div>
-    )
+    );}
 
-
-}
-
-export  {General, Especifica};
+export {General, Especifica} ;
 
