@@ -21,6 +21,8 @@ body {
     justify-content: space-around;
     align-items: center;
     margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
   }
   
   /*Estilo para los botones */
@@ -34,6 +36,19 @@ body {
     margin-left: 8px;
   }
   
+ 
+  .button{
+    background-color:rgba(25, 0, 255, 0.89);
+    color:white;
+    cursor:pointer;
+    border-color:hsla(241, 100%, 50%, 0.692);
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-top: 20px;
+    float: right;
+
+  }
+
   /*Efecto del boton */
   .topButton:hover{
     cursor:pointer;
@@ -41,17 +56,8 @@ body {
     transform:scale(1.1);
   }
   
-  .navbarButton{
-    background-color:rgba(255, 0, 106, 0.822);
-    color:white;
-    cursor:pointer;
-    border-color:hsla(320, 100%, 50%, 0.692);
-    border-radius: 10px;
-    margin-left: 5px;
-  }
   
-  
-  .navbarButton:hover{
+  .button:hover{
     cursor:pointer;
     box-shadow: 2px 1px;
     transform:scale(1.1);
@@ -148,3 +154,4 @@ body {
   display: flex;
   justify-content: center;
 }
+
