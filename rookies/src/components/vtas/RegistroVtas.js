@@ -16,11 +16,13 @@ const RegistroVtas = () => {
     const [idCliente, setIdCliente] = useState (" ");
     const [producto, setProducto] = useState (" ");
     const [idPdto, setIdPdto] = useState ( " ");
-    const [cantidad, setCantidad, getCantidad] = useState (" ");
-    const [precio, setPrecio, getPrecio] =useState (" ");
+    const [cantidad, setCantidad] = useState (" ");
+    const [precio, setPrecio] =useState (" ");
     const [subtotal, setSubtotal] =useState (" ");
     const [total, setTotal] =useState (" ");
     const [mostrarSubtotalPdto, setMostarSubtotalProducto] = useState (false);
+    const [mostrarTotalVta, setMostrarTotalVta] = useState (false);
+    
 
     useEffect(() => {}, []);
 
@@ -92,20 +94,31 @@ const RegistroVtas = () => {
         'Producto', producto,'Código Producto', idPdto, 'Cantidad', cantidad,'Precio', precio, 
         'Subtotal',subtotal,'Total venta', total);
     })
-
+   
+    //Funciones
     const agregarProducto =(() => {
         console.log ('Producto', producto,'Código Producto', idPdto, 'Cantidad', cantidad,'Precio', precio, 'subtotal',subtotal )
     })
+    
+    //Función para mostrar el subtotal de venta de formulario de registro de ventas
+    useEffect (()=>{
+        if(mostrarSubtotalPdto){
+         var valorParcial = parseFloat (precio * cantidad);
+         setSubtotal(valorParcial);
+         console.log (valorParcial);
+     }
+    },[mostrarSubtotalPdto])
 
-    //Funciones
+    //Función para mostrar el total de venta de formulario de registro de ventas
+    useEffect (()=>{
+        if(mostrarTotalVta){
+            var  vtaNeta = 0
+            vtaNeta = parseFloat(vtaNeta + subtotal);
+            setTotal(vtaNeta);
+         console.log (vtaNeta);
+     }
+    },[mostrarTotalVta]) 
 
-   useEffect (()=>{
-       if(mostrarSubtotalPdto){
-           var subtotal = cantidad * precio;
-        setSubtotal(subtotal);
-        console.log  (subtotal);}
-   },[mostrarSubtotalPdto])
-  
     //Formulario de creación de ventas
     return (
         <div>
@@ -120,7 +133,7 @@ const RegistroVtas = () => {
                                 </label>
                                 <label htmlFor = 'Fecha' className = "col">
                                     Fecha
-                                    <input type = "date" name = "Fecha" className = "form-control"    value = {fecha} onChange = {cambioFecha} required/>
+                                    <input type = "date" name = "Fecha" className = "form-control"  value = {fecha} onChange = {cambioFecha} required/>
                                 </label>
                                 <label htmlFor="estado"  className="col" defaultValue = {0}>
                                     Estado:
@@ -168,7 +181,7 @@ const RegistroVtas = () => {
                             <li className = "row">
                             <h5 className = "tituloFormulario">Datos Productos</h5>
                                 <label htmlFor = "idPdto" className = "col">
-                                    Código del Producto
+                                    Código
                                 <input  name ="idPdto" type = "text" placeholder = "Código del Producto" className = "form-control" value = {idPdto} onChange = {cambioIdPdto} required/>
                                 </label>
                                 <label htmlFor="producto" className = "col">
@@ -177,33 +190,35 @@ const RegistroVtas = () => {
                                 </label>
                                 <label htmlFor = "cantidad" className = "col">
                                      Unidades 
-                                <input  name = "cantidad" id= "valor1" type = "number" min = "1" onClick = {()=> setMostarSubtotalProducto(!mostrarSubtotalPdto)} placeholder ="Unidades de Producto" className = "form-control" value ={cantidad} onChange = {cambioCantidad}  required/>
+                                <input  name = "cantidad" id= "valor1" type = "number" min = "1"  placeholder ="Unidades de Producto" className = "form-control" value ={cantidad} onChange = {cambioCantidad} onClick = {()=> setMostarSubtotalProducto(!mostrarSubtotalPdto)} required/>
                                 </label>
                                 <label htmlFor  = "precio" className = "col">
                                     Precio 
-                                <input  name ="precio" id = "valor2" placeholder = "Precio por Producto" className = "form-control" value = {precio} onChange = {cambioPrecio}  required/>
+                                <input  name ="precio" id = "valor2" placeholder = "Precio por Producto" className = "form-control" value = {precio} onChange = {cambioPrecio} onClick = {()=> setMostarSubtotalProducto(!mostrarSubtotalPdto)} required/>
                                 </label>
-                                <div htmlFor ="subtotal" className = "col">
+                                <label htmlFor ="subtotal" className = "col">
                                     Subtotal
-                                <div name = "subtotal"  value = {subtotal} onChange = {cambioSubtotal}>{mostrarSubtotalPdto}</div>
+                                <input className = "form-control" name = "subtotal"  value = {subtotal} onChange = {cambioSubtotal} readOnly/>
+                                    <div>{mostrarSubtotalPdto}</div>
+                                </label>
+                                <div className = "col">
+                                <button type = "button"  className = "button " onClick = {agregarProducto} >Agregar</button>
                                 </div>
                             </li>
-                            <li>
-                            <button type = "button"  className = "button " onClick = {agregarProducto} >Agregar Producto</button> 
-                            <button type = "button"  className = "button " onClick = {agregarProducto} >Total</button> 
-                            <button type = "button"  className = "button " onClick = {agregarProducto} >Limpiar</button> 
-                            </li>
-                            <br>
-                            </br>
-                            <br>
-                            </br>
+                            <br></br>
+                            <div className = "row">
+                                <button type = "button"  className = "button " onClick = {() => { setMostrarTotalVta(!mostrarTotalVta); }} >Total</button>
+                            </div>
                             <li className = "row"> 
                                 <label htmlFor = "total" className = "col">
                                     Total de la Venta
-                                <input  name = "total"  placeholder = "Total Venta" className = "form-control" value ={total} onChange = {cambioTotal} required  />
+                                <input  name = "total"  placeholder = "Total Venta" className = "form-control" value ={total} onChange = {cambioTotal} readOnly  />
+                                <div>{mostrarTotalVta}</div>
                                 </label>
                             </li>
+                            <div className = "row">
                             <button type = "submit"  className = "button " onClick = {Enviar} > Guardar</button>   
+                            </div>
                     </ul>
                 </form>
             </main>

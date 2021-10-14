@@ -114,12 +114,21 @@ body {
     border: 0px solid rgb(211, 207, 207);
   }
 
-  
 .casilla:focus-within{
   outline: none;
   border: 1px solid rgb(226, 10, 118);
 }
 
+.casillaFormulario{
+  border-radius: 8px;
+  padding: 3px;
+  border: 0px solid rgb(211, 207, 207);
+}
+
+.casilla:focus-within{
+  outline: none;
+  border: 1px solid rgb(10, 50, 226);
+}
 .positionLabel{
   margin: 10px;
 }
