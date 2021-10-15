@@ -1,5 +1,6 @@
-
 import React, {useEffect, useState} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import RegistroVtas from 'components/vtas/RegistroVtas';
 import TablaVtas from 'components/vtas/TablaVtas';
 import {General} from 'components/vtas/Busqueda';
@@ -78,7 +79,8 @@ const Vtas = () => {
             <main>
                 <section className ='topnav'>
                     <button onClick = {() => setMostrarFormularioRegistro (!mostrarFormularioRegistro)} className = "topButton" >{textoBoton}</button> 
-                        <div>{mostrarFormularioRegistro && <RegistroVtas />}</div>  
+                        <div>{mostrarFormularioRegistro && <RegistroVtas />} 
+                        <ToastContainer position="bottom-center" autoClose={5000} /> </div>  
                     <button onClick = {() => setMostrarVtas (!mostrarVtas)} className = "topButton" >{textoBotonListar}</button> 
                     <div>{mostrarVtas && <TablaVtas listadoVtas = {data}/>} </div> 
                     <button onClick = {()=>setMostrarSeccionBusqueda(!mostrarSeccionBusqueda)} className = "topButton">{textoBotonBuscar}</button>

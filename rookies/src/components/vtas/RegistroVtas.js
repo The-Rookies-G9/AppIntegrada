@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import "bootstrap/dist/css/bootstrap.min.css";
+
 
 
 const RegistroVtas = () => {
@@ -93,6 +95,7 @@ const RegistroVtas = () => {
         'Código del vendedor',"Tipo de Documento", tipoIdCliente, idVendedor, 'Cliente', cliente, 'Código Cliente',idCliente,
         'Producto', producto,'Código Producto', idPdto, 'Cantidad', cantidad,'Precio', precio, 
         'Subtotal',subtotal,'Total venta', total);
+        toast ('Guardado con Exito');
     })
    
     //Funciones
