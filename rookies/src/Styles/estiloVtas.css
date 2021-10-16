@@ -25,6 +25,15 @@ body {
     margin-right: 30px;
   }
   
+  .topnav2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
   /*Estilo para los botones */
   .topButton{
     background-color:rgba(255, 0, 106, 0.822);
@@ -34,6 +43,7 @@ body {
     border-color:hsla(320, 100%, 50%, 0.692);
     border-radius: 200px;
     margin-left: 8px;
+    margin-top: 20px;
   }
   
  

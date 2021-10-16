@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 
 
-const RegistroVtas = () => {
+const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
 
     //Definición de estados
 
@@ -96,6 +96,8 @@ const RegistroVtas = () => {
         'Producto', producto,'Código Producto', idPdto, 'Cantidad', cantidad,'Precio', precio, 
         'Subtotal',subtotal,'Total venta', total);
         toast ('Guardado con Exito');
+        propMostrarTablaVtas (true);
+        propAgregarVta ([ ...listadoVtas, { idVta:idVta, fecha: fecha, estado: estado, vendedor: vendedor, idVendedor: idVendedor, cliente: cliente, tipoIdCliente: tipoIdCliente, idCliente: idCliente, producto:producto, idPdto: idPdto, cantidad: cantidad, precio:precio, subtotal: subtotal, total:total }, ]);
     })
    
     //Funciones
@@ -121,6 +123,11 @@ const RegistroVtas = () => {
          console.log (vtaNeta);
      }
     },[mostrarTotalVta]) 
+
+    
+
+
+
 
     //Formulario de creación de ventas
     return (

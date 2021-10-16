@@ -13,15 +13,16 @@ const DataBackend =[
   {
     idVta: "v456",
     fecha: "4/2/21" ,
+    estado: "Activo",
     vendedor: "Camilo Parra" , 
     idVendedor: "3276545",
     cliente: "Mirian medina" ,
+    tipoIdCliente: 'cedula',
     idCliente: "cv002" ,
-    estado: "Activo",
     producto: "Camisa Dama",
     idPcto: "cf342" , 
     cantidad: 4 ,
-    vUnit: 3000,
+    precio: 3000,
     subTotal: 12000,
     total : 400000,
   } 
@@ -40,7 +41,7 @@ const Vtas = () => {
     const [textoBoton, setTextoBoton] = useState('cerrar');
     const [textoBotonListar, setTextoBotonListar] = useState('cerrar');
     const [textoBotonBuscar, setTextoBotonBuscar] = useState('cerrar');
-    const [data, setdata] = useState ([]);
+    const [data, setData] = useState ([]);
    
     useEffect(() => {
         if (mostrarFormularioRegistro) {
@@ -70,16 +71,16 @@ const Vtas = () => {
     useEffect(() => {}, []);
 
     useEffect (() => {
-        setdata(DataBackend);
+        setData(DataBackend);
     }, [] );
 
 
     return (
         <div>
             <main>
-                <section className ='topnav'>
-                    <button onClick = {() => setMostrarFormularioRegistro (!mostrarFormularioRegistro)} className = "topButton" >{textoBoton}</button> 
-                        <div>{mostrarFormularioRegistro && <RegistroVtas />} 
+                <section>
+                    <button onClick = {() => setMostrarFormularioRegistro (!mostrarFormularioRegistro)} className = " topButton" >{textoBoton}</button> 
+                        <div>{mostrarFormularioRegistro && <RegistroVtas propMostrarTablaVtas = {setMostrarVtas} listadoVtas = {data} propAgregarVta = {setData} />} 
                         <ToastContainer position="bottom-center" autoClose={5000} /> </div>  
                     <button onClick = {() => setMostrarVtas (!mostrarVtas)} className = "topButton" >{textoBotonListar}</button> 
                     <div>{mostrarVtas && <TablaVtas listadoVtas = {data}/>} </div> 
