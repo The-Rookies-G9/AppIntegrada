@@ -47,7 +47,7 @@ const Vtas = () => {
         if (mostrarFormularioRegistro) {
           setTextoBoton('Cerrar');
         } else {
-          setTextoBoton('Registrar');
+          setTextoBoton('Nueva venta');
         }
       }, [mostrarFormularioRegistro]);
 
@@ -78,6 +78,14 @@ const Vtas = () => {
     return (
         <div>
             <main>
+                <nav className = "topnav">
+                    <h1>Ventas</h1>
+                    <button className = "topButton1">Registrar</button>
+                    <button className = "topButton1">Listar</button>
+                    <button className = "topButton1">Buscar</button>
+                    <button className = "topButton1"> Actualizar</button>
+                    
+                </nav>
                 <section>
                     <button onClick = {() => setMostrarFormularioRegistro (!mostrarFormularioRegistro)} className = " topButton" >{textoBoton}</button> 
                         <div>{mostrarFormularioRegistro && <RegistroVtas propMostrarTablaVtas = {setMostrarVtas} listadoVtas = {data} propAgregarVta = {setData} />} 

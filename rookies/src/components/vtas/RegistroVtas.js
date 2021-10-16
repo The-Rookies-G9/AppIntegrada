@@ -24,6 +24,7 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
     const [total, setTotal] =useState (" ");
     const [mostrarSubtotalPdto, setMostarSubtotalProducto] = useState (false);
     const [mostrarTotalVta, setMostrarTotalVta] = useState (false);
+    const [agregarPdtoAVta, setAgregarPdtoAVta] = useState (false);
     
 
     useEffect(() => {}, []);
@@ -87,23 +88,29 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
         setTotal ( e.target.value);
     }
 
+    const cambioAgregarPdto = (e) => {
+        setAgregarPdtoAVta ( e.target.value);
+    }
     
     
     //Funciones para envio de información al Backend
     const Enviar = (() => {
-        console.log('Código de venta',idVta,'Fecha', fecha,'Vendedor', vendedor, 
-        'Código del vendedor',"Tipo de Documento", tipoIdCliente, idVendedor, 'Cliente', cliente, 'Código Cliente',idCliente,
-        'Producto', producto,'Código Producto', idPdto, 'Cantidad', cantidad,'Precio', precio, 
-        'Subtotal',subtotal,'Total venta', total);
-        toast ('Guardado con Exito');
-        propMostrarTablaVtas (true);
-        propAgregarVta ([ ...listadoVtas, { idVta:idVta, fecha: fecha, estado: estado, vendedor: vendedor, idVendedor: idVendedor, cliente: cliente, tipoIdCliente: tipoIdCliente, idCliente: idCliente, producto:producto, idPdto: idPdto, cantidad: cantidad, precio:precio, subtotal: subtotal, total:total }, ]);
+        if(fecha === " " || vendedor === " "|| tipoIdCliente === " " || idVendedor === " " || cliente === " " || idCliente === " " || producto === " " || 
+        idPdto === " " || cantidad === " " || precio === " " || subtotal === " " || total === " "){
+            toast.error('Por Favor, Ingrese todos los datos de la venta');
+        }else{
+            toast ('Venta Guardada con Exito');
+            propMostrarTablaVtas (true);
+            propAgregarVta ([ ...listadoVtas, { idVta:idVta, fecha: fecha, estado: estado, vendedor: vendedor, idVendedor: idVendedor,
+                 cliente: cliente, tipoIdCliente: tipoIdCliente, idCliente: idCliente, producto:producto, idPdto: idPdto, cantidad: cantidad,
+                  precio:precio, subtotal: subtotal, total:total }, ]);
+        }
+      
     })
    
     //Funciones
-    const agregarProducto =(() => {
-        console.log ('Producto', producto,'Código Producto', idPdto, 'Cantidad', cantidad,'Precio', precio, 'subtotal',subtotal )
-    })
+  
+        
     
     //Función para mostrar el subtotal de venta de formulario de registro de ventas
     useEffect (()=>{
@@ -124,6 +131,30 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
      }
     },[mostrarTotalVta]) 
 
+    useEffect (() =>{
+        if (agregarPdtoAVta){
+             (<div>
+                <label htmlFor="producto" className = "col">
+                    Producto
+                    <input name= "producto"  type = "text" placeholder = "Producto" className = "form-control" value = {producto} onChange = {cambioProducto} required/>
+                </label>
+                <label htmlFor = "cantidad" className = "col">
+                    Unidades 
+                    <input  name = "cantidad" id= "valor1" type = "number" min = "1"  placeholder ="Unidades de Producto" className = "form-control" value ={cantidad} onChange = {cambioCantidad} onClick = {()=> setMostarSubtotalProducto(!mostrarSubtotalPdto)} required/>
+                </label>
+                <label htmlFor  = "precio" className = "col">
+                    Precio 
+                    <input  name ="precio" id = "valor2" placeholder = "Precio por Producto" className = "form-control" value = {precio} onChange = {cambioPrecio} onClick = {()=> setMostarSubtotalProducto(!mostrarSubtotalPdto)} required/>
+                </label>
+                <label htmlFor ="subtotal" className = "col">
+                    Subtotal
+                <input className = "form-control" name = "subtotal"  value = {subtotal} onChange = {cambioSubtotal} readOnly/>
+                <div>{mostrarSubtotalPdto}</div>
+                </label>
+                </div>
+            )
+        }
+    }, [agregarPdtoAVta])
     
 
 
@@ -172,9 +203,9 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
                                     Nombre Completo del Cliente
                                 <input  name ="cliente"  className = "form-control" type = "text" placeholder = "Nombre completo del Cliente" value = {cliente} onChange = {cambioCliente} required/>
                                 </label>
-                                <label htmlFor="tipoId" className="col" >
+                                <label htmlFor="tipoId" className="col" defaultValue={0} >
                                     Tipo de Documento de Identidad:
-                                    <select name="tipoId" className = "form-control" defaultValue={0} value={tipoIdCliente} onChange = {cambioTipoIdCliente} required>
+                                    <select name="tipoId" className = "form-control"  value={tipoIdCliente} onChange = {cambioTipoIdCliente} required>
                                     <option value={0}>Seleccione</option>
                                     <option value={tipoIdCliente} >Cédula de ciudadania</option>
                                     <option value={tipoIdCliente} >Cédula de Extranjeria</option>
@@ -211,10 +242,7 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
                                 <input className = "form-control" name = "subtotal"  value = {subtotal} onChange = {cambioSubtotal} readOnly/>
                                     <div>{mostrarSubtotalPdto}</div>
                                 </label>
-                                <div className = "col">
-                                <button type = "button"  className = "button " onClick = {agregarProducto} >Agregar</button>
-                                </div>
-                            </li>
+                             </li>
                             <br></br>
                             <div className = "row">
                                 <button type = "button"  className = "button " onClick = {() => { setMostrarTotalVta(!mostrarTotalVta); }} >Total</button>
