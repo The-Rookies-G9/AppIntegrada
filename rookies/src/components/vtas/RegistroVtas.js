@@ -7,12 +7,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
 
     //Definición de estados
-
-    const [idVta , setIdVta] = useState (" ");
+    const [idVta,setIdVta] = useState(0);
     const [fecha, setFecha] = useState (" ");
     const [estado, setEstado] = useState (" ");
     const [vendedor, setVendedor] = useState (" ");
-    const [idVendedor, setIdVendedor] = useState ( " ");
     const [cliente, setCliente] =useState (" ");
     const [tipoIdCliente, setTipoIdCliente] =useState (" ");
     const [idCliente, setIdCliente] = useState (" ");
@@ -24,20 +22,17 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
     const [total, setTotal] =useState (" ");
     const [mostrarSubtotalPdto, setMostarSubtotalProducto] = useState (false);
     const [mostrarTotalVta, setMostrarTotalVta] = useState (false);
-    const [agregarPdtoAVta, setAgregarPdtoAVta] = useState (false);
+
     
 
     useEffect(() => {}, []);
 
    useEffect(() =>{
        console.log ( );
-   } , [idVta, fecha, estado, vendedor, idVendedor, cliente, tipoIdCliente, idCliente, producto, idPdto, cantidad, precio, subtotal, total])
+   } , [idVta, fecha, estado, vendedor, cliente, tipoIdCliente, idCliente, producto, idPdto, cantidad, precio, subtotal, total])
 
    //Funciones para ingreso de informacion con evento
-    const cambioidVta = (e) => {
-        setIdVta(e.target.value);
-    }
-
+  
    const cambioFecha = (e) => {
        setFecha(e.target.value);
    }
@@ -48,10 +43,6 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
 
    const cambioVendedor = (e) => {
     setVendedor( e.target.value);
-    }
-
-    const cambioIdVendedor = (e) => {
-        setIdVendedor( e.target.value);
     }
 
     const cambioCliente = (e) => {
@@ -88,20 +79,17 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
         setTotal ( e.target.value);
     }
 
-    const cambioAgregarPdto = (e) => {
-        setAgregarPdtoAVta ( e.target.value);
-    }
-    
+     
     
     //Funciones para envio de información al Backend
     const Enviar = (() => {
-        if(fecha === " " || vendedor === " "|| tipoIdCliente === " " || idVendedor === " " || cliente === " " || idCliente === " " || producto === " " || 
+        if(fecha === " " || vendedor === " "|| tipoIdCliente === " " ||  cliente === " " || idCliente === " " || producto === " " || 
         idPdto === " " || cantidad === " " || precio === " " || subtotal === " " || total === " "){
             toast.error('Por Favor, Ingrese todos los datos de la venta');
         }else{
             toast ('Venta Guardada con Exito');
             propMostrarTablaVtas (true);
-            propAgregarVta ([ ...listadoVtas, { idVta:idVta, fecha: fecha, estado: estado, vendedor: vendedor, idVendedor: idVendedor,
+            propAgregarVta ([ ...listadoVtas, { idVta:idVta, fecha: fecha, estado: estado, vendedor: vendedor, 
                  cliente: cliente, tipoIdCliente: tipoIdCliente, idCliente: idCliente, producto:producto, idPdto: idPdto, cantidad: cantidad,
                   precio:precio, subtotal: subtotal, total:total }, ]);
         }
@@ -131,30 +119,6 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
      }
     },[mostrarTotalVta]) 
 
-    useEffect (() =>{
-        if (agregarPdtoAVta){
-             (<div>
-                <label htmlFor="producto" className = "col">
-                    Producto
-                    <input name= "producto"  type = "text" placeholder = "Producto" className = "form-control" value = {producto} onChange = {cambioProducto} required/>
-                </label>
-                <label htmlFor = "cantidad" className = "col">
-                    Unidades 
-                    <input  name = "cantidad" id= "valor1" type = "number" min = "1"  placeholder ="Unidades de Producto" className = "form-control" value ={cantidad} onChange = {cambioCantidad} onClick = {()=> setMostarSubtotalProducto(!mostrarSubtotalPdto)} required/>
-                </label>
-                <label htmlFor  = "precio" className = "col">
-                    Precio 
-                    <input  name ="precio" id = "valor2" placeholder = "Precio por Producto" className = "form-control" value = {precio} onChange = {cambioPrecio} onClick = {()=> setMostarSubtotalProducto(!mostrarSubtotalPdto)} required/>
-                </label>
-                <label htmlFor ="subtotal" className = "col">
-                    Subtotal
-                <input className = "form-control" name = "subtotal"  value = {subtotal} onChange = {cambioSubtotal} readOnly/>
-                <div>{mostrarSubtotalPdto}</div>
-                </label>
-                </div>
-            )
-        }
-    }, [agregarPdtoAVta])
     
 
 
@@ -170,7 +134,7 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
                             <li className = "row">
                                 <label htmlFor = "idVta" className ="col">
                                     Código de Venta
-                                <input type = "text" name = "idVta"  className = "form-control"  value= {idVta} readOnly />
+                                <input type = "text" name = "idVta"  className = "form-control"  value= {idVta} onChange = {((e)=>{setIdVta(idVta + 1)})} readOnly />
                                 </label>
                                 <label htmlFor = 'Fecha' className = "col">
                                     Fecha
@@ -191,10 +155,6 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
                                 <label className = "col" htmlFor="vendedor">
                                     Vendedor
                                 <input  name = "vendedor"  className = "form-control" type = "text" placeholder = "Nombre Vendedor" onChange = {cambioVendedor} value = {vendedor}/>
-                                </label>
-                                <label htmlFor = "idVendedor" className = "col">
-                                    Código del Vendedor
-                                <input  name = "idVendedor"  className = "form-control" type = "text" placeholder = "Identificación del Vendedor" value = {idVendedor} onChange = {cambioIdVendedor} required/>
                                 </label>
                             </li>
                             <li className = "row">

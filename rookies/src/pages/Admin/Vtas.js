@@ -11,7 +11,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //Variable que simula ser backend
 const DataBackend =[
   {
-    idVta: "v456",
+    _id: "v456",
+    fecha: "4/2/21" ,
+    estado: "Activo",
+    vendedor: "Camilo Parra" , 
+    idVendedor: "3276545",
+    cliente: "Mirian medina" ,
+    tipoIdCliente: 'cedula',
+    idCliente: "cv002" ,
+    producto: "Camisa Dama",
+    idPcto: "cf342" , 
+    cantidad: 4 ,
+    precio: 3000,
+    subTotal: 12000,
+    total : 400000,
+  } ,
+  {
+    _id: "v456",
     fecha: "4/2/21" ,
     estado: "Activo",
     vendedor: "Camilo Parra" , 
