@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -17,7 +16,7 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route path= {['/Admin/Admin', '/Admin/Pdtos', '/Admin/Vtas', '/Admin/RolesUsu' ]}>
+          <Route path= {['/Admin/Admin', '/Admin/Pdtos', '/Admin/Vtas', '/Admin/RolesUsu', '/pages/Login']}>
             <PrivateLayout>
               <Switch>
                 <Route path ="/Admin/Admin">
@@ -35,9 +34,9 @@ function App() {
               </Switch>
             </PrivateLayout>
           </Route>
-          <Route path= {['/Login']}>
+          <Route path= {['/pages/Login']}>
             <AuthLayout>
-              <Route path ="/Login">
+              <Route path ="/pages/Login">
                 <Login />
               </Route>
             </AuthLayout>

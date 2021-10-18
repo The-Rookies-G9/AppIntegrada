@@ -1,6 +1,9 @@
-
-
-
+.g-signin{
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+}
 
 
 body {
@@ -13,14 +16,29 @@ body {
   padding:150px;
   margin:0px;
   background-color: #2a3f85;
-  color: white;
   text-align: center;
 
 }
 
-.active {
-  background-color: #04AA6D;
-}
+.nav-links {
+  font-size: 15px;
+  color: white;
+  }
+  
+  .nav-links:hover {
+  font-size: 20px;
+  color: rgb(76, 129, 209);    
+  }
+
+  .footer-links {
+    color: white;
+    }
+    
+    .footer-links:hover {
+    color: rgb(76, 129, 209);    
+    }
+  
+
 
 
 ul {
@@ -39,13 +57,11 @@ ul {
   padding:80%;
 }
 
-li {
-  float: left;
-  color: white;
+
+.imglogo:hover {
+  opacity: 0.5;
 }
 
-a {
-  color: white;
+h6 {
+  color: rgb(76, 129, 209)
 }
-
-
