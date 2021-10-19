@@ -75,6 +75,11 @@ const FilaVtas = ({vtas}) =>{
         setEdit(!edit);
     })
 
+    const ActualizarVta = (() => {
+        console.log (actualizacionVta);
+        //Enviar datos al backend
+    })
+
    
     return (
         <tr >
@@ -114,7 +119,7 @@ const FilaVtas = ({vtas}) =>{
                     <input type = 'text' value = {actualizacionVta.subTotal} onChange={(e) => setActualizacionVta({ ...actualizacionVta, subTotal: e.target.value })} />
                 </td>
                 <td>
-                    <input type = 'text'value = {actualizacionVta.total} onChange={(e) => setActualizacionVta({ ...actualizacionVta, total: e.target.value })} />
+                    <input type = 'text'value = {actualizacionVta.total} onChange={(e) => setActualizacionVta({ ...actualizacionVta, total: e.target.value })}  />
                 </td>
                 </>
             ):(
@@ -138,7 +143,7 @@ const FilaVtas = ({vtas}) =>{
              <td>
             <div className = 'espacioBotones' >
                {edit ? (
-               <button onClick ={Editar} type="button" className= "btn btn-success" ><i class="far fa-check-circle"/></button>
+               <button onClick ={ActualizarVta} type="button" className= "btn btn-success" ><i class="far fa-check-circle"/></button>
                ):(
                 <i onClick ={Editar}  class="far fa-edit"/>
                )
