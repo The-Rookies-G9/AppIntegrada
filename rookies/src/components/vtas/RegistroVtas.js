@@ -9,7 +9,7 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
     const form = useRef (null);
 
     //Definición de estado
-    const [idVta,setIdVta] = useState(0);
+    const [idVta,setIdVta] = useState(01);
     const [fecha, setFecha] = useState (" ");
     const [estado, setEstado] = useState (" ");
     const [vendedor, setVendedor] = useState (" ");
