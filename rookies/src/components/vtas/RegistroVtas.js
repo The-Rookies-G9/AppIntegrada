@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
+import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-
 const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
 
-    //Definición de estados
+    const form = useRef (null);
+
+    //Definición de estado
     const [idVta,setIdVta] = useState(0);
     const [fecha, setFecha] = useState (" ");
     const [estado, setEstado] = useState (" ");
@@ -95,6 +97,32 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
         }
       
     })
+
+    const submitForm = (e) => {
+        e.preventDefault();
+        const formData = new FormData(form.current);
+        const nuevaVta = {};
+        formData.forEach ((value, key)=>{
+           nuevaVta [key] = (value);
+        })
+        propMostrarTablaVtas(true);
+        toast.success('Guardado con Exito'); 
+        propAgregarVta([...listadoVtas, nuevaVta]);
+    }
+
+    const options = {
+        method: 'POST',
+        url: 'http://localhost:5000/',
+        headers: {'Content-Type': 'application/json'},
+        data: {}, 
+      };
+    
+
+    axios.request(options).then(function (response) {
+        console.log(response.data);
+      }).catch(function (error) {
+        console.error(error);
+      });
    
     //Funciones
   
@@ -120,15 +148,11 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
     },[mostrarTotalVta]) 
 
     
-
-
-
-
-    //Formulario de creación de ventas
+      //Formulario de creación de ventas
     return (
         <div>
             <main>
-                <form id = 'formularioRegistroVtas'>
+                <form id = 'formularioRegistroVtas' onSubmit = {submitForm} ref= {form}>
                     <ul className ="containFormulario">
                         <h1 className = "tituloFormulario">Formulario Registro Ventas</h1>
                             <li className = "row">
@@ -143,7 +167,7 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
                                 <label htmlFor="estado"  className="col" defaultValue = {0}>
                                     Estado:
                                 <select name="estado" className = "form-control"   required>
-                                    <option value ={0} >Seleccione</option>
+                                    <option disabled value ={0} >Seleccione</option>
                                     <option value={estado} onChange = {cambioEstado}>En proceso</option>
                                     <option value={estado} onChange = {cambioEstado}>Cancelada</option>
                                     <option value={estado} onChange = {cambioEstado}>Entregada</option>
@@ -166,7 +190,7 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
                                 <label htmlFor="tipoId" className="col" defaultValue={0} >
                                     Tipo de Documento de Identidad:
                                     <select name="tipoId" className = "form-control"  value={tipoIdCliente} onChange = {cambioTipoIdCliente} required>
-                                    <option value={0}>Seleccione</option>
+                                    <option disabled value={0}>Seleccione</option>
                                     <option value={tipoIdCliente} >Cédula de ciudadania</option>
                                     <option value={tipoIdCliente} >Cédula de Extranjeria</option>
                                     <option value={tipoIdCliente} >Tarjeta de Identidad</option>

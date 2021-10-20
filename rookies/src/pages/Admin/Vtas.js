@@ -6,6 +6,7 @@ import TablaVtas from 'components/vtas/TablaVtas';
 import {General} from 'components/vtas/Busqueda';
 import { Especifica } from 'components/vtas/Busqueda';
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
   //import { Link } from 'react-router-dom';
 
 //Variable que simula ser backend
@@ -94,15 +95,7 @@ const Vtas = () => {
     return (
         <div>
             <main>
-                <nav className = "topnav">
-                    <h1>Ventas</h1>
-                    <button className = "topButton1">Registrar</button>
-                    <button className = "topButton1">Listar</button>
-                    <button className = "topButton1">Buscar</button>
-                    <button className = "topButton1"> Actualizar</button>
-                    
-                </nav>
-                <section>
+               <section>
                     <button onClick = {() => setMostrarFormularioRegistro (!mostrarFormularioRegistro)} className = " topButton" >{textoBoton}</button> 
                         <div>{mostrarFormularioRegistro && <RegistroVtas propMostrarTablaVtas = {setMostrarVtas} listadoVtas = {data} propAgregarVta = {setData} />} 
                         <ToastContainer position="bottom-center" autoClose={5000} /> </div>  
