@@ -7,15 +7,33 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const TablaVtas = ({listadoVtas, setMostrarTablaActualizada}) => {
 
+    //Estado
+
+    const [buscar,setBuscar] = useState('');
+    const [listaFiltrada, setListaFiltrada] = useState (listadoVtas);
+
+     //Funciones para ingreso de informacion con evento
+  
+    const cambioBusqueda = (e) => {
+        setBuscar(e.target.value);
+    }
+
     useEffect(() => {
        console.log ("Listado total de ventas de la empresa", listadoVtas)
    }, [listadoVtas]);
 
+   useEffect(()=> {
+       setListaFiltrada(
+        listadoVtas.filter((elemento) => {
+            return (JSON.stringify(elemento).toLowerCase().includes(buscar.toLowerCase()));
+       })
+       );
+   }, [buscar, listadoVtas])
      
    return (
        <div>
            <label for="busqueda">
-                <input name="busqueda" type="text" className=" casilla positionLabel" placeholder="Buscar" />
+                <input name="busqueda" type="text" className=" casilla positionLabel" placeholder="Buscar" value={buscar} onChange ={cambioBusqueda} />
             </label>
             <tabla  className="tabla">
                 <h1 className ="tituloFormulario" >Lista Total de Ventas</h1>
@@ -38,7 +56,7 @@ const TablaVtas = ({listadoVtas, setMostrarTablaActualizada}) => {
                     </tr>
                 </thead>
                 <tbody>
-                {listadoVtas.map ((vtas) => {
+                {listaFiltrada.map ((vtas) => {
                     return(
                         <FilaVtas key = {vtas._id} vtas = {vtas} setMostrarTablaActualizada ={setMostrarTablaActualizada} />
                     );
@@ -54,7 +72,7 @@ const FilaVtas = ({vtas, setMostrarTablaActualizada}) =>{
 //Estado
     const [edit, setEdit] = useState(false);
     const [openDialog, setOpenDialog] = useState(false);
-    const [buscar,setBuscar] = useState('');
+    
 
 //creando objeto 
     const [actualizacionVta, setActualizacionVta] = useState ({

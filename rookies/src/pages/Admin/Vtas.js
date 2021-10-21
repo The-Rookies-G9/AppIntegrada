@@ -17,10 +17,8 @@ const Vtas = () => {
    
     const [mostrarFormularioRegistro, setMostrarFormularioRegistro] = useState (false);
     const [mostrarVtas, setMostrarVtas] =useState (false);
-    const [mostrarSeccionBusqueda, setMostrarSeccionBusqueda] = useState (false);
     const [textoBoton, setTextoBoton] = useState('cerrar');
     const [textoBotonListar, setTextoBotonListar] = useState('cerrar');
-    const [textoBotonBuscar, setTextoBotonBuscar] = useState('cerrar');
     const [mostrarTablaActualizada, setMostrarTablaActualizada] = useState (true);
     const [data, setData] = useState ([]);
    
