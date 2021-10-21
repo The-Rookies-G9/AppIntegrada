@@ -1,21 +1,22 @@
 import React, {useEffect, useState, useRef} from 'react';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import { Dialog, Tooltip } from '@material-ui/core';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-const TablaVtas = ({listadoVtas}) => {
-
-    const Form = useRef (null);
+const TablaVtas = ({listadoVtas, setMostrarTablaActualizada}) => {
 
     useEffect(() => {
        console.log ("Listado total de ventas de la empresa", listadoVtas)
    }, [listadoVtas]);
 
-   const submitEdit =(e) => {
-       e.preventDefault();
-    }
-  
+     
    return (
        <div>
+           <label for="busqueda">
+                <input name="busqueda" type="text" className=" casilla positionLabel" placeholder="Buscar" />
+            </label>
             <tabla  className="tabla">
                 <h1 className ="tituloFormulario" >Lista Total de Ventas</h1>
                 <thead>
@@ -39,7 +40,7 @@ const TablaVtas = ({listadoVtas}) => {
                 <tbody>
                 {listadoVtas.map ((vtas) => {
                     return(
-                        <FilaVtas key = {vtas._id} vtas = {vtas}/>
+                        <FilaVtas key = {vtas._id} vtas = {vtas} setMostrarTablaActualizada ={setMostrarTablaActualizada} />
                     );
                     })
                     }
@@ -49,9 +50,12 @@ const TablaVtas = ({listadoVtas}) => {
    )
 }
 
-const FilaVtas = ({vtas}) =>{
+const FilaVtas = ({vtas, setMostrarTablaActualizada}) =>{
 //Estado
     const [edit, setEdit] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
+    const [buscar,setBuscar] = useState('');
+
 //creando objeto 
     const [actualizacionVta, setActualizacionVta] = useState ({
         _id: vtas._id,
@@ -71,14 +75,50 @@ const FilaVtas = ({vtas}) =>{
 
     });
 //funcion
+
     const Editar = (() => {
         setEdit(!edit);
     })
 
-    const ActualizarVta = (() => {
+    const ActualizarVta = async () => {
         console.log (actualizacionVta);
         //Enviar datos al backend
-    })
+        const options = {
+            method: 'PATCH',
+            url: 'http://localhost:5000/',
+            headers: {'Content-Type': 'application/json'},
+            data: {...actualizacionVta, id: vtas._id},
+          };
+          
+          await axios.request(options).then(function (response) {
+            console.log(response.data);
+            toast.success('Venta Actualizada con Exito');
+            setEdit(false);
+            setMostrarTablaActualizada(true);
+          }).catch(function (error) {
+            console.error(error);
+            toast.error('No se realizaron los cambios');
+          });
+    }
+
+    const Eliminar = async ()=> {
+        const options = {
+            method: 'DELETE',
+            url: 'http://localhost:5000/',
+            headers: {'Content-Type': 'application/json'},
+            data: {id: vtas._id},
+          };
+          
+         await axios.request(options).then(function (response) {
+            console.log(response.data);
+            toast.success('Venta Eliminada Exitosamente');
+            setMostrarTablaActualizada(true);
+          }).catch(function (error) {
+            console.error(error);
+            toast.error('Error Eliminando la Venta');
+          });
+          setOpenDialog(false);
+    }
 
    
     return (
@@ -143,12 +183,32 @@ const FilaVtas = ({vtas}) =>{
              <td>
             <div className = 'espacioBotones' >
                {edit ? (
+                <>
+                <Tooltip tittle='Confirmar Edición' arrow placement ='bottom'>
                <button onClick ={ActualizarVta} type="button" className= "btn btn-success" ><i class="far fa-check-circle"/></button>
+               </Tooltip>
+               <Tooltip tittle='Cancelar Edición' arrow placement ='bottom'>
+               <button onClick ={Editar} type="button" className= "btn btn-success" ><i class="fas fa-ban"/></button>
+               </Tooltip>
+               </>
                ):(
+                <>
+                <Tooltip tittle = 'Editar' arrow placement ='bottom'>
                 <i onClick ={Editar}  class="far fa-edit"/>
+                </Tooltip>
+                <Tooltip tittle = 'Eliminar' arrow placement ='bottom'>
+                <i onClick = {()=> setOpenDialog(true)} class="bi bi-trash"/>
+                </Tooltip>
+                </>
                )
             }
-               <i class="bi bi-trash"/>
+            <Dialog open = {openDialog}> 
+            <h2 className = 'tituloFormulario'>¿Desea Eliminar la Venta?</h2>
+            <button onClick = {Eliminar}>Si</button>
+            <button onClick = {()=>{setOpenDialog(false)}}>No</button>
+
+            </Dialog>
+               
             </div>
             </td>
     </tr>

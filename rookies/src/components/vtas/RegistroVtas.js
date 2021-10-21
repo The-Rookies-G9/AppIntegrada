@@ -9,7 +9,7 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
     const form = useRef (null);
 
     //Definición de estado
-    const [idVta,setIdVta] = useState(01);
+    const [idVta,setIdVta] = useState(1);
     const [fecha, setFecha] = useState (" ");
     const [estado, setEstado] = useState (" ");
     const [vendedor, setVendedor] = useState (" ");
@@ -84,31 +84,27 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
      
     
     //Funciones para envio de información al Backend
-    const Enviar = (() => {
-        if(fecha === " " || vendedor === " "|| tipoIdCliente === " " ||  cliente === " " || idCliente === " " || producto === " " || 
-        idPdto === " " || cantidad === " " || precio === " " || subtotal === " " || total === " "){
-            toast.error('Por Favor, Ingrese todos los datos de la venta');
-        }else{
-            toast ('Venta Guardada con Exito');
-            propMostrarTablaVtas (true);
-            propAgregarVta ([ ...listadoVtas, { idVta:idVta, fecha: fecha, estado: estado, vendedor: vendedor, 
-                 cliente: cliente, tipoIdCliente: tipoIdCliente, idCliente: idCliente, producto:producto, idPdto: idPdto, cantidad: cantidad,
-                  precio:precio, subtotal: subtotal, total:total }, ]);
-        }
+    /*  const Enviar = (() => {
+            if(fecha === " " || vendedor === " "|| tipoIdCliente === " " ||  cliente === " " || idCliente === " " || producto === " " || 
+            idPdto === " " || cantidad === " " || precio === " " || subtotal === " " || total === " "){
+                toast.error('Por Favor, Ingrese todos los datos de la venta');
+            }else{
+                toast ('Venta Guardada con Exito');
+                propMostrarTablaVtas (true);
+                propAgregarVta ([ ...listadoVtas, { idVta:idVta, fecha: fecha, estado: estado, vendedor: vendedor, 
+                    cliente: cliente, tipoIdCliente: tipoIdCliente, idCliente: idCliente, producto:producto, idPdto: idPdto, cantidad: cantidad,
+                    precio:precio, subtotal: subtotal, total:total }, ]);
+            }
       
-    })
+    })*/
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault();
         const formData = new FormData(form.current);
         const nuevaVta = {};
         formData.forEach ((value, key)=>{
            nuevaVta [key] = (value);
-        })
-        propMostrarTablaVtas(true);
-        toast.success('Guardado con Exito'); 
-        propAgregarVta([...listadoVtas, nuevaVta]);
-    }
+        });
 
     const options = {
         method: 'POST',
@@ -116,16 +112,20 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
         headers: {'Content-Type': 'application/json'},
         data: {}, 
       };
-    
 
-    axios.request(options).then(function (response) {
+      await axios.request(options).then(function (response) {
         console.log(response.data);
+        toast.success('Guardado con exito');
       }).catch(function (error) {
         console.error(error);
+        toast.error('Error en el proceso');
       });
-   
-    //Funciones
-  
+
+      propMostrarTablaVtas(true);
+      propAgregarVta([...listadoVtas, nuevaVta]);
+  };
+    
+
         
     
     //Función para mostrar el subtotal de venta de formulario de registro de ventas
@@ -164,9 +164,9 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
                                     Fecha
                                     <input type = "date" name = "Fecha" className = "form-control"  value = {fecha} onChange = {cambioFecha} required/>
                                 </label>
-                                <label htmlFor="estado"  className="col" defaultValue = {0}>
+                                <label htmlFor="estado"  className="col" >
                                     Estado:
-                                <select name="estado" className = "form-control"   required>
+                                <select name="estado"  defaultValue = {0} className = "form-control"   required>
                                     <option disabled value ={0} >Seleccione</option>
                                     <option value={estado} onChange = {cambioEstado}>En proceso</option>
                                     <option value={estado} onChange = {cambioEstado}>Cancelada</option>
@@ -187,15 +187,15 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
                                     Nombre Completo del Cliente
                                 <input  name ="cliente"  className = "form-control" type = "text" placeholder = "Nombre completo del Cliente" value = {cliente} onChange = {cambioCliente} required/>
                                 </label>
-                                <label htmlFor="tipoId" className="col" defaultValue={0} >
+                                <label htmlFor="tipoId" className="col"  >
                                     Tipo de Documento de Identidad:
-                                    <select name="tipoId" className = "form-control"  value={tipoIdCliente} onChange = {cambioTipoIdCliente} required>
+                                    <select defaultValue={0} name="tipoId" className = "form-control"    required>
                                     <option disabled value={0}>Seleccione</option>
-                                    <option value={tipoIdCliente} >Cédula de ciudadania</option>
-                                    <option value={tipoIdCliente} >Cédula de Extranjeria</option>
-                                    <option value={tipoIdCliente} >Tarjeta de Identidad</option>
-                                    <option value={tipoIdCliente} >Pasaporte</option>
-                                    <option value={tipoIdCliente} >NIT</option>
+                                    <option value={tipoIdCliente} onChange = {cambioTipoIdCliente} >Cédula de ciudadania</option>
+                                    <option value={tipoIdCliente} onChange = {cambioTipoIdCliente} >Cédula de Extranjeria</option>
+                                    <option value={tipoIdCliente} onChange = {cambioTipoIdCliente}>Tarjeta de Identidad</option>
+                                    <option value={tipoIdCliente} onChange = {cambioTipoIdCliente} >Pasaporte</option>
+                                    <option value={tipoIdCliente} onChange = {cambioTipoIdCliente} >NIT</option>
                                     </select>
                                 </label>
                                 <label htmlFor = "idCliente" className = "col">
@@ -239,7 +239,7 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
                                 </label>
                             </li>
                             <div className = "row">
-                            <button type = "submit"  className = "button " onClick = {Enviar} > Guardar</button>   
+                            <button type = "submit"  className = "button " > Guardar</button>   
                             </div>
                     </ul>
                 </form>
