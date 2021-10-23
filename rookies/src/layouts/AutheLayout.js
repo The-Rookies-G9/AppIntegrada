@@ -9,8 +9,8 @@ import Sidebar from 'components/Sidebar';
 const AuthLayout = ({children}) => {
     return (
         <div>
-            <Sidebar />
-            <main>{children}</main>
+            <Navbar />
+            <main >{children}</main>
             
         </div>
     )

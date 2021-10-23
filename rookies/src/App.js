@@ -1,5 +1,6 @@
-import logo from './logo.svg';
+
 import './App.css';
+import './Styles/estiloVtas.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Admin from 'pages/Admin/Admin';
