@@ -103,7 +103,7 @@ const FilaVtas = ({vtas, setMostrarTablaActualizada}) =>{
         //Enviar datos al backend
         const options = {
             method: 'PATCH',
-            url: 'http://localhost:5000/',
+            url: 'http://localhost:5000/vta/actualizar',
             headers: {'Content-Type': 'application/json'},
             data: {...actualizacionVta, id: vtas._id},
           };
@@ -122,7 +122,7 @@ const FilaVtas = ({vtas, setMostrarTablaActualizada}) =>{
     const Eliminar = async ()=> {
         const options = {
             method: 'DELETE',
-            url: 'http://localhost:5000/',
+            url: 'http://localhost:5000/vta/eliminar',
             headers: {'Content-Type': 'application/json'},
             data: {id: vtas._id},
           };
@@ -183,7 +183,7 @@ const FilaVtas = ({vtas, setMostrarTablaActualizada}) =>{
             ):(
                 <>
                 <td>{vtas.fecha}</td>
-                <td>{vtas._id}</td>
+                <td>{vtas.idVta}</td>
                 <td>{vtas.estado}</td>
                 <td>{vtas.vendedor}</td>
                 <td>{vtas.cliente}</td>

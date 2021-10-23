@@ -26,7 +26,6 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
     const [mostrarTotalVta, setMostrarTotalVta] = useState (false);
 
     
-
     useEffect(() => {}, []);
 
    useEffect(() =>{
@@ -80,24 +79,6 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
     const cambioTotal = (e) => {
         setTotal ( e.target.value);
     }
-
-     
-    
-    //Funciones para envio de información al Backend
-    /*  const Enviar = (() => {
-            if(fecha === " " || vendedor === " "|| tipoIdCliente === " " ||  cliente === " " || idCliente === " " || producto === " " || 
-            idPdto === " " || cantidad === " " || precio === " " || subtotal === " " || total === " "){
-                toast.error('Por Favor, Ingrese todos los datos de la venta');
-            }else{
-                toast ('Venta Guardada con Exito');
-                propMostrarTablaVtas (true);
-                propAgregarVta ([ ...listadoVtas, { idVta:idVta, fecha: fecha, estado: estado, vendedor: vendedor, 
-                    cliente: cliente, tipoIdCliente: tipoIdCliente, idCliente: idCliente, producto:producto, idPdto: idPdto, cantidad: cantidad,
-                    precio:precio, subtotal: subtotal, total:total }, ]);
-            }
-      
-    })*/
-
     const submitForm = async (e) => {
         e.preventDefault();
         const formData = new FormData(form.current);
@@ -108,9 +89,23 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
 
     const options = {
         method: 'POST',
-        url: 'http://localhost:5000/',
+        url: 'http://localhost:5000/vtas/nuevo',
         headers: {'Content-Type': 'application/json'},
-        data: {}, 
+        data: {
+            idVta: nuevaVta.idVta,
+            fecha: nuevaVta.fecha,
+            estado: nuevaVta.estado,
+            vendedor: nuevaVta.vendedor,
+            cliente: nuevaVta.cliente,
+            tipoIdCliente: nuevaVta.tipoIdCliente,
+            idCliente: nuevaVta.idCliente,
+            producto: nuevaVta.producto,
+            idPcto: nuevaVta.idPcto,
+            cantidad: nuevaVta.cantidad,
+            precio: nuevaVta.precio,
+            subTotal: nuevaVta.subTotal,
+            total: nuevaVta.total
+        }, 
       };
 
       await axios.request(options).then(function (response) {
@@ -126,8 +121,6 @@ const RegistroVtas = ({propMostrarTablaVtas, listadoVtas, propAgregarVta}) => {
   };
     
 
-        
-    
     //Función para mostrar el subtotal de venta de formulario de registro de ventas
     useEffect (()=>{
         if(mostrarSubtotalPdto){

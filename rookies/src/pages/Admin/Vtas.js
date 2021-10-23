@@ -5,12 +5,8 @@ import RegistroVtas from 'components/vtas/RegistroVtas';
 import TablaVtas from 'components/vtas/TablaVtas';
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-  //import { Link } from 'react-router-dom';
-
-//Variable que simula ser backend
-
-
  
+
 const Vtas = () => {
 
 //Definición de estados, si deseamos que inicialice vacio se deja (" ") y si deseamos que inicialice con un vtas se ubica dentro del parentesis
@@ -20,18 +16,18 @@ const Vtas = () => {
     const [textoBoton, setTextoBoton] = useState('cerrar');
     const [textoBotonListar, setTextoBotonListar] = useState('cerrar');
     const [mostrarTablaActualizada, setMostrarTablaActualizada] = useState (true);
-    const [data, setData] = useState ([]);
+    const [vtas, setVtas] = useState ([]);
    
     useEffect (() => {
         const ObtenerVtas = async () =>{
             const options = {
                 method: 'GET',
-                url: 'http://localhost:5000/',
+                url: 'http://localhost:5000/vtas',
                 headers: {'Content-Type': 'application/json'}
               };
               
               await axios.request(options).then(function (response) {
-                setData(response.data);
+                setVtas(response.data);
               }).catch(function (error) {
                 console.error(error);
               });
@@ -76,10 +72,10 @@ const Vtas = () => {
             <main>
                <section>
                     <button onClick = {() => setMostrarFormularioRegistro (!mostrarFormularioRegistro)} className = " topButton" >{textoBoton}</button> 
-                        <div>{mostrarFormularioRegistro && <RegistroVtas propMostrarTablaVtas = {setMostrarVtas} listadoVtas = {data} propAgregarVta = {setData} />} 
+                        <div>{mostrarFormularioRegistro && <RegistroVtas propMostrarTablaVtas = {setMostrarVtas} listadoVtas = {vtas} propAgregarVta = {setVtas} />} 
                         <ToastContainer position="bottom-center" autoClose={5000} /> </div>  
                     <button onClick = {() => setMostrarVtas (!mostrarVtas)} className = "topButton" >{textoBotonListar}</button> 
-                    <div>{mostrarVtas && <TablaVtas listadoVtas = {data} setMostrarTablaActualizada={setMostrarTablaActualizada}/>} </div> 
+                    <div>{mostrarVtas && <TablaVtas listadoVtas = {vtas} setMostrarTablaActualizada={setMostrarTablaActualizada}/>} </div> 
                                     
                 </section>
         </main>
