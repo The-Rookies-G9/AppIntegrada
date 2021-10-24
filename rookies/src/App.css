@@ -1,0 +1,67 @@
+.g-signin{
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+
+
+body {
+  margin:0px;
+}
+
+.navbar {
+
+  justify-content: space-between;
+  padding:150px;
+  margin:0px;
+  background-color: #2a3f85;
+  text-align: center;
+
+}
+
+.nav-links {
+  font-size: 15px;
+  color: white;
+  }
+  
+  .nav-links:hover {
+  font-size: 20px;
+  color: rgb(76, 129, 209);    
+  }
+
+  .footer-links {
+    color: white;
+    }
+    
+    .footer-links:hover {
+    color: rgb(76, 129, 209);    
+    }
+  
+
+
+
+ul {
+    list-style: none;
+    padding:10px;
+    margin:0px;
+}
+
+.navbarPosition {
+  display:flex;
+  padding: 3%;
+}
+
+.mainPosition {
+  display: flex;
+  padding:80%;
+}
+
+
+.imglogo:hover {
+  opacity: 0.5;
+}
+
+h6 {
+  color: rgb(76, 129, 209)
+}
