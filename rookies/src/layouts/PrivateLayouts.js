@@ -10,8 +10,7 @@ const PrivateLayout = ({children}) => {
     return (
         <div>
             <Navbar />
-            <main >{children}</main>
-            <Sidebar />
+            <main >{children}</main>           
         </div>
     )
 }

@@ -10,7 +10,7 @@ import Footer from 'components/Footer';
 const PublicLayout = ({children}) => {
     return (
         <div>
-            <Navbar />
+            <Navbar  />
             <main>{children}</main>
             <Footer />
         </div>
